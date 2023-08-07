@@ -8,6 +8,10 @@ import Profilepage from './Pages/Profile';
 import ProfileSettingspage from "./Pages/ProfileSettings";
 import TrackingHistoryPage from "./Pages/TrackingHistory";
 import { AuthenticationGuard } from "./Components/AuthGuard/AuthenticationGuard";
+import Errorpage from "./Pages/Error";
+import Helppage from "./Pages/Help";
+import Learnpage from "./Pages/Learn";
+import Datapage from './Pages/Data';
 
 export default function App() {
   return (
@@ -20,8 +24,12 @@ export default function App() {
             <Route path="/profile" element={<AuthenticationGuard component={Profilepage} />} />
             <Route path="/login" element={<AuthenticationGuard />} />
             {/* <Route path="/profile-settings" element={<AuthenticationGuard component={ProfileSettingspage} />} /> */}
-            <Route path="/tracking-history" element={<AuthenticationGuard component={TrackingHistoryPage} />} />
-            <Route path="/support" element={<Contactpage />} />
+               <Route path="/tracking-history" element={<AuthenticationGuard component={TrackingHistoryPage} />} />
+            <Route path="/contact" element={<Contactpage />} />
+            <Route path="/help" element={<Helppage />} />
+            <Route path="/learn/:birdId?" element={<Learnpage />} />
+            <Route path="/data" element={<Datapage />} />
+            <Route path="*" element={<Errorpage />} />
           </Routes>
       </Router>
   )

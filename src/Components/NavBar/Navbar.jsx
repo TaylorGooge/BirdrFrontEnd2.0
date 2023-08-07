@@ -31,11 +31,27 @@ export default function NavBar() {
               <li className="nav-item">
                 <Link className="nav-link" to="/map">Map</Link>
               </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/about">About</Link>
+               <li className="nav-item">
+                <Link className="nav-link" to="/learn">Learn</Link>
               </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/contact">Contact</Link>
+              <li className="nav-item dropdown">
+                <a className="nav-link dropdown-toggle " href="index.html" role="button"
+                  data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Support & Info Hub
+                </a>
+                <div className="dropdown-menu dropdown-menu-md dropdown-menu-start py-0 pe-lg-0">
+                  <div className="overflow-hidden rounded-end">
+                    <div className="row mx-0">
+                      <div className="col-lg-5 position-relative">
+                        <div className="py-1 py-lg-3 d-lg-flex flex-column">
+                          <Link className="nav-link" to="/data">Data Nest</Link>
+                           <Link className="nav-link" to="/contact">Contact</Link>
+                           <Link className="nav-link" to="/help">Help</Link>
+                           <Link className="nav-link" to="/about">About</Link>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </li>
               {isAuthenticated && <li className="nav-item">
                 <Link className="nav-link" to="/profile">Profile</Link>

@@ -42,7 +42,10 @@ export default function Footer() {
                 <a href="/about" className="nav-link text-decoration-none text-reset">About</a>
               </li>
               <li className="nav-item">
-                <a href="/support" className="nav-link text-decoration-none text-reset">Support</a>
+                <a href="/contact" className="nav-link text-decoration-none text-reset">Contact</a>
+              </li>
+              <li className="nav-item">
+                <a href="/help" className="nav-link text-decoration-none text-reset">Help</a>
               </li>
               <li className="nav-item">
                 <a href="https://www.birdpop.org/" className="nav-link text-decoration-none text-reset">Institute for Bird Populations</a>

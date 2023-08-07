@@ -1,9 +1,7 @@
 import React, {useEffect, useState} from 'react';
-import axios from 'axios';
 import { makeApiCall } from '../../../api';
-
 import TabbedContent from './TabbedMap/TabbedContent';
-import GoogleMap from './GoogleMap';
+
 
 export default function TabbedMapNav() {
   let [geoJson, setGeoJson] = useState('');
@@ -11,7 +9,6 @@ export default function TabbedMapNav() {
   
   let fetchData = async () =>{
     try {
-        // const response = await axios.get('https://birdr.taylorgooge.repl.co/birdSighting');
       const response = await makeApiCall('/birdSighting', "GET");
         setrawData(response.data);
         toGeoJson(response.data);

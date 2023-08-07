@@ -1,13 +1,14 @@
 import React from 'react';
 import NavBar from '../Components/NavBar/Navbar';
 import Footer from '../Components/Footer/Footer';
-import TrackingHistory from '../Components/Profile/TrackingHistory/TrackingHistory';
+import Data from '../Components/Data/Data';
 
-export default function TrackingHistoryPage() {
+
+export default function Datapage() {
   return (
     <div>
       <NavBar />
-      <TrackingHistory />
+      <Data/>
       <Footer />
     </div>
   );

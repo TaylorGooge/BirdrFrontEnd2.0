@@ -30,7 +30,7 @@ const Profile = () => {
                                 <div className="card shadow p-3">
                                     <div>
                                         <div className="width-15x height-15x mb-5 rounded-circle shadow bg-no-repat overflow-hidden bg-contain"
-                                            style={{backgroundImage: 'url({user.picture}), url(https://birdr-app.s3.amazonaws.com/public/profileFallback.png'}}>
+                                            style={{backgroundImage: `url(${user.picture}), url(https://birdr-app.s3.amazonaws.com/public/profileFallback.png)`}}>
                                         </div>
                                         <h4 className="mb-2">{user.name}</h4>
                                         <small className="d-block mb-3"></small>  

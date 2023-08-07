@@ -35,7 +35,7 @@ export default function UserInfo() {
                                     </div>
                                 </div>
                             </a>
-                            <a href="#" className="dropdown-item p-3">
+                            <a href="/logout" className="dropdown-item p-3">
                                 <span className="d-block text-end">
                                     <i className="bx bx-box-arrow-right"></i>
                                     Sign Out

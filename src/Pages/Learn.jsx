@@ -1,14 +1,16 @@
 import React from 'react';
 import NavBar from '../Components/NavBar/Navbar';
 import Footer from '../Components/Footer/Footer';
-import TrackingHistory from '../Components/Profile/TrackingHistory/TrackingHistory';
+import Learn from '../Components/Learn/Learn';
 
-export default function TrackingHistoryPage() {
+const Learnpage = () => {
+  
   return (
-    <div>
+     <div>
       <NavBar />
-      <TrackingHistory />
+      <Learn />
       <Footer />
     </div>
   );
-}
+};
+export default Learnpage;

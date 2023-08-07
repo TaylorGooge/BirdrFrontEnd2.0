@@ -4,19 +4,19 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!--Base Theme -->
-    <link rel="stylesheet" href="css/theme.css">
+    <link rel="stylesheet" href="./public/css/theme.css">
     <!--Swiper slider -->
-    <link rel="stylesheet" href="vendor/css/swiper-bundle.min.css">
+    <link rel="stylesheet" href="./public/vendor/css/swiper-bundle.min.css">
     <!-- G-lightbox -->
-    <link rel="stylesheet" href="vendor/css/glightbox.min.css">
+    <link rel="stylesheet" href="./public/vendor/css/glightbox.min.css">
     <!-- Favicon -->
-    <link rel="icon" href="img/favicon_io/favicon-16x16.png" type="image/ico">
+    <link rel="icon" href="./img/favicon_io/favicon-16x16.png" type="image/ico">
     <!--Box Icons -->
-    <link rel="stylesheet" href="fonts/boxicons/css/boxicons.min.css">
+    <link rel="stylesheet" href="./public/fonts/boxicons/css/boxicons.min.css">
     <!--AOS Animations-->
-    <link rel="stylesheet" href="vendor/css/aos.css">
+    <link rel="stylesheet" href="./public/vendor/css/aos.css">
     <!--Iconsmind Icons-->
-    <link rel="stylesheet" href="fonts/iconsmind/iconsmind.css">
+    <link rel="stylesheet" href="./public/fonts/iconsmind/iconsmind.css">
     <!-- Google fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -29,7 +29,7 @@
   </head>
   <body>
     <div id="root"></div>
-    <script type="module" src="/src/index.jsx"></script>
+    <script type="module" src="./src/index.jsx"></script>
 		
     <!--
     This script places a badge on your repl's full-browser view back to your repl's cover
@@ -39,24 +39,34 @@
     <!--Jquery-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <!-- Main script -->
-    <script src="js/theme.bundle.js" ></script>
+    <script type="module" src="./public/js/theme.bundle.js" ></script>
     <!--Moment -->
-    <script src="vendor/moment.min.js" ></script>
+    <script type="module" src="./public/vendor/moment.min.js" ></script>
     <!-- Select2 -->
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <!--Datatables-->
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script> 
     <!--DateTime-->
     <script type="text/javascript" src="https://cdn.datatables.net/plug-ins/1.12.1/dataRender/datetime.js"></script>
     <!--Swiper-->
     <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
     <!--Autosize-->
-    <script src="vendor/autosize.min.js"></script>
+    <script type="module" src="./public/vendor/autosize.min.js"></script>
     <!--Replit Badge -->
     <script src="https://replit.com/public/js/replit-badge-v2.js" theme="dark" position="bottom-right"></script>
     <!-- Swiper  -->
-    <script src="js/swiper.js" type="module"></script>
-    <!--Googe Maps -->
-     <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC9nbhtbGeolVY2g-PckOOSnfe3Fabea0w&v=weekly&channel=2"></script> -->
+    <script src="./public/js/swiper.js" type="module"></script>
+    <!--kofi-->
+    <script src='https://storage.ko-fi.com/cdn/scripts/overlay-widget.js'></script>
+  <script>
+    kofiWidgetOverlay.draw('birdrapp', {
+      'type': 'floating-chat',
+      'floating-chat.donateButton.text': 'Support Us',
+      'floating-chat.donateButton.background-color': '#00b9fe',
+      'floating-chat.donateButton.text-color': '#fff'
+    });
+  </script>
+ 
+
   </body>
 </html>

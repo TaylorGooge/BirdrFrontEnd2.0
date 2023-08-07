@@ -1,13 +1,15 @@
 import React from 'react';
 import NavBar from '../Components/NavBar/Navbar';
+import Profile from '../Components/Profile/Profile';
 import Footer from '../Components/Footer/Footer';
-import TrackingHistory from '../Components/Profile/TrackingHistory/TrackingHistory';
+import Error from '../Components/Error/Error';
 
-export default function TrackingHistoryPage() {
+export default function Errorpage() {
+  
   return (
     <div>
       <NavBar />
-      <TrackingHistory />
+      <Error/>
       <Footer />
     </div>
   );

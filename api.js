@@ -1,6 +1,7 @@
 import axios from "axios";
+import api_config from './api_config.js'
 // Define your default base URL
-const BASE_URL = 'https://birdrapi-83d15ff7da21.herokuapp.com/';
+const BASE_URL = api_config.baseurl
 // Create an API instance with the default base URL
 const api = axios.create({
   baseURL: BASE_URL,

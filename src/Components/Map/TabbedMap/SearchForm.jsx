@@ -3,8 +3,10 @@ import { fetchDataHelper } from '../helpers/fetchDataHelper';
 import ImprovedMap from '../Map/ImprovedMap';
 import { toGeoJsonHelper } from '../helpers/toGeoJsonHelper';
 import { makeApiCall } from '../../../../api';
+import Select from 'react-select';
+
 export default function SearchForm(props) {
-  
+
   let [speciesList, setSpeciesList] = useState(null);
   let [groupList, setGroupList] = useState(null);
   let [searchSpecies, setSearchSpecies] = useState(null);
@@ -13,12 +15,13 @@ export default function SearchForm(props) {
   let [showSearchError, setShowSearchError] = useState(null);
   let [rawData, setRawData] = useState(null);
   let [geoJson, setGeoJson] = useState(null);
-  
-  const handleSpeciesSearchChange = (event) => {
-    setSearchSpecies(event.target.value);
+
+ const handleSpeciesSearchChange = selectedOption => {
+     setSearchSpecies(selectedOption.birdID);
   };
-  const handleGroupSearchChange = (event) => {
-    setSearchGroup(event.target.value);
+   const handleGroupSearchChange = selectedOption => {
+     setSearchGroup(selectedOption.id);
+  
   };
   const postSearchByBird = async () => {
     if (searchSpecies === 0 || setSearchSpecies === null) {
@@ -67,24 +70,20 @@ export default function SearchForm(props) {
       </div>
       <div className="row mt-4">
         <div className="col">
-          <select
+          <Select
             className="form-control dropdown-basic-single"
             type="select"
             id="speciesSearch"
             autoComplete="on"
             onChange={handleSpeciesSearchChange}
+            getOptionLabel={option => option.englishName}
+            getOptionValue={option => option.birdId}
+            options={speciesList}
           >
-            <option value="0"> Select</option>
-            {speciesList &&
-              speciesList.map((data) => (
-                <option key={data.birdID} value={data.birdID}>
-                  {data.englishName}
-                </option>
-              ))}
-          </select>
+          </Select> 
         </div>
         <div className="col">
-          <button type="submit" id="search-submitBird" className="btn btn-primary" onClick={postSearchByBird}>
+          <button type="submit" id="search-submitBird" data-testid = 'search-submitBird'className="btn btn-primary" onClick={postSearchByBird}>
             Submit
           </button>
         </div>
@@ -92,21 +91,17 @@ export default function SearchForm(props) {
       <hr className="my-7" />
       <div className="row mt-4">
         <div className="col">
-          <select
+          <Select
             className="form-control search-select-basic-single"
             type="select"
-            id="Functional Group"
+            id="functionalGroupSearch"
             autoComplete="on"
             onChange={handleGroupSearchChange}
+            getOptionLabel={option => option.name}
+            getOptionValue={option => option.id}
+            options={groupList}
           >
-            <option value="0"> Select</option>
-            {groupList &&
-              groupList.map((data) => (
-                <option key={data.id} value={data.id}>
-                  {data.name}
-                </option>
-              ))}
-          </select>
+          </Select>
         </div>
         <div className="col">
           <button
@@ -129,8 +124,10 @@ export default function SearchForm(props) {
           </div>
         )}
       </div>
-        <ImprovedMap geoJson={geoJson} key={2} keyVal={2} />
+       <a onClick={clearResults}>clear results</a>
+      <hr className="my-7" />
+      <ImprovedMap geoJson={geoJson ? geoJson : props.geoJson} key={2} keyVal={2} />
     </>
-       
+
   );
 }
