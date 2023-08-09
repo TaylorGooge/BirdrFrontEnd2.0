@@ -18,10 +18,25 @@ export default function ReportForm(props) {
 
   const postBirdSighting = () => {
     if (reportBird == 0 || reportBird == null) {
+      tester()
       return
     }
     getLocation();
   }
+
+  const tester = () => {
+    navigator.geolocation.getCurrentPosition(success, error);
+  }
+
+  const success = () => {
+    return
+  }
+
+  const error = () => {
+    setShowLocError(true)
+  }
+
+
   const onMouseOver = () => {
     setShowTooltip(true)
   }
@@ -39,6 +54,7 @@ export default function ReportForm(props) {
   }
 
   const foundLocation = async (pos) => {
+    console.log('found you')
     setShowLocError(false)
     setShowFailure(false)
     setShowSuccess(false)
@@ -98,12 +114,13 @@ export default function ReportForm(props) {
         <div className="border-bottom flex-grow-1"></div>
       </div>
       <div className="row mt-4">
-        <div className="col">
+        <div className="col" data-testid="birdSelectContainer">
           <Select
             className="form-control bird-select-basic-single"
             type="select"
             id="birdName"
             data-testid="birdName"
+            inputId='birdName'
             autoComplete="on"
             aria-label="select"
             onChange={handleReportChange}

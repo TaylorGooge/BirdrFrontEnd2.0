@@ -56,7 +56,7 @@ const TrackingTable = ({ data }) => {
           <tr key={item.id}>
             <td><a href={`/learn/${item.birdID}`}>{item.englishName}</a></td>
             <td>{item.scientificName}</td>
-            <td>{formatDate(item.date)}</td>
+            <td>{item.date}</td>
             {/* <td>
                 <button
                   type="button"
