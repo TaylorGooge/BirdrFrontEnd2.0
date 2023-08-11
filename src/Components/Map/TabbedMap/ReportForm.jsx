@@ -116,7 +116,8 @@ export default function ReportForm(props) {
       <div className="row mt-4">
         <div className="col" data-testid="birdSelectContainer">
           <Select
-            className="form-control bird-select-basic-single"
+            classNamePrefix='list'
+            className="form-control"
             type="select"
             id="birdName"
             data-testid="birdName"

@@ -146,7 +146,7 @@ export default function MapFilter(props) {
             </label>
           </div>
         </div>
-        <a onClick={clearResults}>clear results</a>
+        <a id='clearFilters' onClick={clearResults}>clear results</a>
 
       </div>
         <hr className="my-7" />

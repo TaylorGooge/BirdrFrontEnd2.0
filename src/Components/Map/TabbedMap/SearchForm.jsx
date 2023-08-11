@@ -124,7 +124,7 @@ export default function SearchForm(props) {
           </div>
         )}
       </div>
-       <a onClick={clearResults}>clear results</a>
+       <a id="searchClear" onClick={clearResults}>clear results</a>
       <hr className="my-7" />
       <ImprovedMap geoJson={geoJson ? geoJson : props.geoJson} key={2} keyVal={2} />
     </>
