@@ -34,7 +34,8 @@
     "react-bootstrap": "^2.8.0",
     "react-google-charts": "^4.0.1",
     "react-router-dom": "^6.14.2",
-    "react-select": "^5.7.4"
+    "react-select": "^5.7.4",
+    "react-simple-maps": "^3.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.22.9",
