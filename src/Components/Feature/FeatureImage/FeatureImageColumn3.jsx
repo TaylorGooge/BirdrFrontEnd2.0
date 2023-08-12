@@ -24,7 +24,7 @@ export default function FeatureImage3() {
             <div className="step-content">
               <h6 className="mb-1">Create an account</h6>
               <p className="mb-0">
-                Create a free account <a href="#" onClick={() => loginWithRedirect()} >here</a>.
+                Create a free account <a href="/map" onClick={() => loginWithRedirect()} >here</a>.
               </p>
             </div>
           </div>

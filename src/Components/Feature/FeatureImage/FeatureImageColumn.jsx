@@ -14,7 +14,7 @@ export default function FeatureImageColumn() {
         <h5 className="mb-4">Get started today</h5>
         <form>
           <div className="d-grid">
-            <a type="button" href="/login" className="btn btn-primary rounded-pill hover-shadow btn-hover-arrow hover-lift">
+            <a type="button" href="/map" className="btn btn-primary rounded-pill hover-shadow btn-hover-arrow hover-lift">
               <span>Sign Up</span>
             </a>
           </div>
