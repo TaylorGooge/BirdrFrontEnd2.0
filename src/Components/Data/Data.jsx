@@ -1,51 +1,119 @@
 import React, { useEffect, useState } from 'react';
 import { makeApiCall } from '../../../api';
-import { Chart } from "react-google-charts";
+import PieChart from './PieChart';
+import Map from './Map';
 
 const Data = () => {
-  let [speciesData, setSpeciesData] = useState([]);
-  let [groupData, setGroupData] = useState([]);
+  let [speciesData, setSpeciesData] = useState(null);
+  let [groupData, setGroupData] = useState(null);
   let [locationData, setLocationData] = useState([]);
-  var options1 = {
-    'width': 'auto',
-    'height': 'auto',
-    'pieSliceText': 'value',
-  };
-  var options2 = {
-    'region': 'US',
-    'width': 'auto',
-    'height': 'auto',
-    'showTooltip': true,
-    'showInfoWindow': true,
-    'zoomLevel': 4
-  };
+
 
   useEffect(() => {
     const fetchData = async () => {
       const locData = await makeApiCall('/data/birdrlocations');
+      const markers = []
       if (locData) {
-        setLocationData(locData.data)
+        locData.data.map((item, index) => {
+          if (index == 0) {
+
+          } else {
+            let tempObj = {
+              makerOffset: 25,
+              name: item[2],
+              coordinates: [item[1], item[0]]
+            }
+            markers.push(tempObj);
+
+          }
+        })
+        setLocationData(markers)
       }
+
+      let fixedSpecData = {
+        series: [],
+        options: {
+          chart: {
+            width: '100%',
+            type: 'pie',
+          },
+          labels: [],
+          // theme: {
+          //   monochrome: {
+          //     enabled: true
+          //   }
+          // },
+          plotOptions: {
+            pie: {
+              dataLabels: {
+                offset: -5
+              }
+            }
+          },
+          // title: {
+          //   text: "Monochrome Pie"
+          // },
+          dataLabels: {
+            formatter(val, opts) {
+              const name = opts.w.globals.labels[opts.seriesIndex]
+              return [name, val.toFixed(1) + '%']
+            }
+          },
+          legend: {
+            show: false
+          }
+        },
+      };
+
       const specData = await makeApiCall('/data/top10species');
       if (specData) {
-        let fixedSpecData = [
-          ['Species-EnglishName', 'Count'],
-        ]
         specData.data.map((item) => {
-          fixedSpecData.push([item.englishName, item.Count])
+          fixedSpecData['series'].push(item.Count)
+          fixedSpecData['options']['labels'].push(item.englishName)
         })
         setSpeciesData(fixedSpecData)
       }
+      let fixedGroupData = {
+        series: [],
+        options: {
+          chart: {
+            width: '100%',
+            type: 'pie',
+          },
+          labels: [],
+          // theme: {
+          //   monochrome: {
+          //     enabled: true
+          //   }
+          // },
+          plotOptions: {
+            pie: {
+              dataLabels: {
+                offset: -5
+              }
+            }
+          },
+          // title: {
+          //   text: "Monochrome Pie"
+          // },
+          dataLabels: {
+            formatter(val, opts) {
+              const name = opts.w.globals.labels[opts.seriesIndex]
+              return [name, val.toFixed(1) + '%']
+            }
+          },
+          legend: {
+            show: false
+          }
+        },
+      };
       const gData = await makeApiCall('/data/top10group');
       if (gData) {
-        let fixedGData = [
-          ['Group', 'Count'],
-        ]
         gData.data.map((item) => {
-          fixedGData.push([item.name, item.Count])
-
+          fixedGroupData['series'].push(item.Count)
+          fixedGroupData['options']['labels'].push(item.name)
         })
-        setGroupData(fixedGData)
+        setGroupData(fixedGroupData)
       }
     };
     fetchData();
@@ -53,7 +121,6 @@ const Data = () => {
   return (
     <main className="main-content pb-4" id="main-content">
       <section className="position-relative bg-gradient-tint">
-
         <div className="container position-relative pt-14 pb-9">
           <div className="row pt-lg-9 pb-lg-4">
             <div className="col-lg-10 mx-auto text-center">
@@ -67,40 +134,25 @@ const Data = () => {
           </div>
         </div>
       </section>
-
       <hr className="my-4" />
       <div className="container-fluid" >
-        
-        <h2  data-aos="fade-down" data-aos-delay="100">Top 10 Frequently Sighted Birds- By English Name</h2>
+        <h2 data-aos="fade-down" data-aos-delay="100">Top 10 Frequently Sighted Birds- By English Name</h2>
         <div className="d-flex justify-content-center hover-lift hover-shadow-xl" id="top10species" data-aos="fade-up" data-aos-delay="100">
-          
-          <Chart
-            chartType="PieChart"
-            data={speciesData}
-            options={options1}
-            legendToggle
-          />
+          {speciesData && <PieChart data={speciesData} />}
+
         </div>
         <hr className="my-4" />
-        <h2  data-aos="fade-down" data-aos-delay="100">Top 10 Frequently Sighted Birds- By Functional Group</h2>
+        <h2 data-aos="fade-down" data-aos-delay="100">Top 10 Frequently Sighted Birds- By Functional Group</h2>
         <div className="d-flex justify-content-center hover-lift hover-shadow-xl" id="top10group" data-aos="fade-up" data-aos-delay="100">
-          <Chart
-            chartType="PieChart"
-            data={groupData}
-            options={options1}
-            legendToggle
-          />
+          {groupData && <PieChart data={groupData} />}
         </div>
       </div>
       <hr className="my-4" />
       <div className="container-fluid">
-        <h2  data-aos="fade-down" data-aos-delay="100">Where are people using Birdr?</h2>
+        <h2 data-aos="fade-down" data-aos-delay="100">Where are people using Birdr?</h2>
         <div className="d-flex justify-content-center hover-lift hover-shadow-xl" id="overallMap" data-aos="fade-up" data-aos-delay="100">
-          <Chart
-            chartType="GeoChart"
-            options={options2}
-            data={locationData}
-          />
+
+          {locationData && <Map data={locationData} />}
         </div>
       </div>
     </main>
