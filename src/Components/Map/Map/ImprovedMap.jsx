@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { Loader } from '@googlemaps/js-api-loader';
-import map_config from './map_config.js'
+//import map_config from './map_config.js'
 
 const ImprovedMap = (props) => {
   let [map, setMap] = useState(null);
@@ -12,7 +12,7 @@ const ImprovedMap = (props) => {
 
   const initMap = () => {
     const loader = new Loader({
-      apiKey: map_config.apiKey,
+      apiKey: import.meta.env.VITE_googlemapsapi,
       version: 'weekly',
       channel: '2',
       libraries: ['places'],
@@ -106,7 +106,6 @@ const ImprovedMap = (props) => {
   useEffect(() => {
     if (map && props.geoJson && props.geoJson.features) {
       populateMap();
-      //setInfoWindows();
     }
   }, [map, props.geoJson]);
   useEffect(() => {

@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import axios from 'axios';
-import config from '../../../auth_config.js'
+
 const EditProfileForm = (props) => {
   const { user, isAuthenticated, isLoading } = useAuth0();
    const [firstName, setFirstName] = useState(user.given_name);

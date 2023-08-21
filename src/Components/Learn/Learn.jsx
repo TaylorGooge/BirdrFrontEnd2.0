@@ -4,9 +4,6 @@ import Select from 'react-select';
 import axios from 'axios';
 import Gallery from './Gallery';
 import BirdTable from './BirdTable';
-import nuthatch from './nuthatch_config.js';
-
-
 
 
 const Learn = () => {
@@ -86,7 +83,7 @@ const Learn = () => {
     try {
       const response = await axios.get(`https://nuthatch.lastelm.software/v2/birds?page=1&pageSize=25&sciName=${urlSearch}`, {
         headers: {
-          "api-key": nuthatch.apiKey
+          "api-key": import.meta.env.VITE_nuthatchapi
         }
       });
       if (response.status === 200 && response.data) {

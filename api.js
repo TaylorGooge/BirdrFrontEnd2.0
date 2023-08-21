@@ -1,7 +1,6 @@
 import axios from "axios";
-import api_config from './api_config.js'
 // Define your default base URL
-const BASE_URL = api_config.baseurl
+const BASE_URL = import.meta.env.VITE_nodebaseurl;
 // Create an API instance with the default base URL
 const api = axios.create({
   baseURL: BASE_URL,
