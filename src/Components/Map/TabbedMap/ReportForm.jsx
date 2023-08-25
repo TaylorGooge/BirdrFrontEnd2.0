@@ -4,6 +4,8 @@ import ImprovedMap from '../Map/ImprovedMap';
 import { makeApiCall } from '../../../../api';
 import { useAuth0 } from "@auth0/auth0-react";
 import Select from 'react-select';
+import Tooltip from '@mui/material/Tooltip';
+import Button from '@mui/material/Button';
 
 export default function ReportForm(props) {
   let [speciesList, setSpeciesList] = useState(null);
@@ -12,7 +14,6 @@ export default function ReportForm(props) {
   let [showSuccess, setShowSuccess] = useState(false);
   let [showFailure, setShowFailure] = useState(false);
   let [showLocError, setShowLocError] = useState(false);
-  let [showTooltip, setShowTooltip] = useState(false);
 
   const { user, isAuthenticated, isLoading } = useAuth0();
 
@@ -36,13 +37,6 @@ export default function ReportForm(props) {
     setShowLocError(true)
   }
 
-
-  const onMouseOver = () => {
-    setShowTooltip(true)
-  }
-  const onMouseOut = () => {
-    setShowTooltip(false)
-  }
 
   const getLocation = () => {
     if (navigator.geolocation) {
@@ -101,15 +95,10 @@ export default function ReportForm(props) {
     <>
       <div className="d-flex align-items-center mb-4">
         <h6 className="mb-0 me-3 me-md-4">
-          Report a Sighting{' '}
-          <strong
-            className="text-decoration-underline text-primary"
-            title="Logging a bird adds a waypoint to the map so that birdwatchers can help each other find interesting birds."
-            onMouseOver={onMouseOver}
-            onMouseOut={onMouseOut}
-          >
-            {showTooltip ? "Logging a bird adds a waypoint to the map so that birdwatchers can help each other find interesting birds." : '?'}
-          </strong>
+          Report a Sighting
+           <Tooltip title="Logging a bird adds a waypoint to the map so that birdwatchers can help each other find interesting birds." arrow>
+      <Button className="text-decoration-underline text-primary">?</Button>
+    </Tooltip>
         </h6>
         <div className="border-bottom flex-grow-1"></div>
       </div>

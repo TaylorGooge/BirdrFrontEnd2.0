@@ -14,11 +14,14 @@
   "license": "ISC",
   "dependencies": {
     "@auth0/auth0-react": "^2.2.0",
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
     "@fortawesome/fontawesome-free": "^6.4.2",
     "@fortawesome/fontawesome-svg-core": "^6.4.0",
     "@fortawesome/free-solid-svg-icons": "^6.4.0",
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@googlemaps/js-api-loader": "^1.16.2",
+    "@mui/material": "^5.14.6",
     "@react-google-maps/api": "^2.19.2",
     "@replit/protocol": "^0.3.20",
     "apexcharts": "^3.41.1",
@@ -32,11 +35,11 @@
     "jquery": "^3.7.0",
     "react-apexcharts": "^1.4.1",
     "react-bootstrap": "^2.8.0",
-    "react-google-charts": "^4.0.1",
     "react-javascript": "file:",
     "react-router-dom": "^6.14.2",
     "react-select": "^5.7.4",
-    "react-simple-maps": "^3.0.0"
+    "react-simple-maps": "^3.0.0",
+    "styled-components": "^6.0.7"
   },
   "devDependencies": {
     "@babel/core": "^7.22.9",
