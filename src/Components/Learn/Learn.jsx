@@ -70,6 +70,7 @@ const Learn = () => {
     }
 
   };
+  
   const handleSearchChange = selectedOption => {
     setSearchValue(selectedOption.scientificName);
   }
@@ -139,7 +140,6 @@ const Learn = () => {
   }
 
   return (
-    // Add your JSX code for the LearnPage component
     <main className="main-content pb-4" id="main-content">
       <section className="position-relative bg-gradient-tint">
         <div className="container position-relative pt-14 pb-9">

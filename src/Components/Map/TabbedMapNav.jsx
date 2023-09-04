@@ -1,38 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { makeApiCall } from '../../../api';
 import TabbedContent from './TabbedMap/TabbedContent';
-
+import { toGeoJsonHelper } from './helpers/toGeoJsonHelper';
 
 export default function TabbedMapNav() {
   let [geoJson, setGeoJson] = useState('');
-  let [rawData, setrawData] = useState(null);
   let [showLocError, setShowLocError] = useState(false);
 
-  const getLocation = () => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(foundLocation, noLocation, { timeout: 30000000000, enableHighAccuracy: false, maximumAge: 75000 });
-    }
-  }
-  const noLocation = (error) => {
+  const noLocation = () => {
     setShowLocError(true)
   }
 
-  const toGeoJson = (data) => {
-    const outGeoJson = {
-      type: 'FeatureCollection',
-      features: [],
-    };
-    for (let i = 0; i < data.length; i++) {
-      const coordA = parseFloat(data[i]['coordA']);
-      const coordB = parseFloat(data[i]['coordB']);
-      const tempObj = {};
-      tempObj['properties'] = data[i];
-      tempObj['type'] = 'Feature';
-      tempObj['geometry'] = { 'type': 'Point', 'coordinates': [coordA, coordB] };
-      outGeoJson['features'].push(tempObj);
-    }
-    setGeoJson(outGeoJson);
-  }
 
   const foundLocation = async (pos) => {
     setShowLocError(false)
@@ -53,14 +30,19 @@ export default function TabbedMapNav() {
     });
     if (response.ok) {
       const data = await response.json();
-      toGeoJson(data);
+      let results = toGeoJsonHelper(data);
+      setGeoJson(results);
     }
   }
 
 
   useEffect(() => {
-    getLocation();
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(foundLocation, noLocation, { timeout: 30000000000, enableHighAccuracy: false, maximumAge: 75000 });
+
+    }
   }, []);
+
   return (
     <main className='main-content' id="main-content" >
       <nav className="mb-4">
@@ -70,7 +52,7 @@ export default function TabbedMapNav() {
           <a className="nav-link" data-bs-toggle="tab" href="#tab3-contact" role="tab" aria-selected="false">Filter</a>
         </div>
       </nav>
-      <TabbedContent geoJson={geoJson} rawData={rawData} />
+      <TabbedContent geoJson={geoJson} locError={showLocError}/>
 
     </main>
 

@@ -6,6 +6,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import Select from 'react-select';
 import Tooltip from '@mui/material/Tooltip';
 import Button from '@mui/material/Button';
+import LocationError from './LocationError'
 
 export default function ReportForm(props) {
   let [speciesList, setSpeciesList] = useState(null);
@@ -19,36 +20,21 @@ export default function ReportForm(props) {
 
   const postBirdSighting = () => {
     if (reportBird == 0 || reportBird == null) {
-      tester()
       return
+    } else {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(foundLocation, noLocation, { timeout: 30000000000, enableHighAccuracy: false, maximumAge: 75000 });
+      }
+
     }
-    getLocation();
+
   }
 
-  const tester = () => {
-    navigator.geolocation.getCurrentPosition(success, error);
-  }
-
-  const success = () => {
-    return
-  }
-
-  const error = () => {
-    setShowLocError(true)
-  }
-
-
-  const getLocation = () => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(foundLocation, noLocation, { timeout: 30000000000, enableHighAccuracy: false, maximumAge: 75000 });
-    }
-  }
-  const noLocation = (error) => {
+  const noLocation = () => {
     setShowLocError(true)
   }
 
   const foundLocation = async (pos) => {
-    console.log('found you')
     setShowLocError(false)
     setShowFailure(false)
     setShowSuccess(false)
@@ -85,20 +71,23 @@ export default function ReportForm(props) {
     };
     fetchData();
   }, []);
+
   const handleButtonClick = () => {
     setShowModal(!showModal);
   };
+
   const handleCloseModal = () => {
     setShowModal(false);
   };
+
   return (
     <>
       <div className="d-flex align-items-center mb-4">
         <h6 className="mb-0 me-3 me-md-4">
           Report a Sighting
-           <Tooltip title="Logging a bird adds a waypoint to the map so that birdwatchers can help each other find interesting birds." arrow>
-      <Button className="text-decoration-underline text-primary">?</Button>
-    </Tooltip>
+          <Tooltip title="Logging a bird adds a waypoint to the map so that birdwatchers can help each other find interesting birds." arrow>
+            <Button className="text-decoration-underline text-primary">?</Button>
+          </Tooltip>
         </h6>
         <div className="border-bottom flex-grow-1"></div>
       </div>
@@ -125,10 +114,8 @@ export default function ReportForm(props) {
               Something went wrong, try again later and contact us if the error persists.
             </div>
           )}
-          {showLocError && (
-            <div className="alert alert-danger" role="alert" data-testid="showLocErrorTest">
-              Unable to log sighting because we couldn't locate you. Make sure you give Birdr permission to access your location. For help click <a href="https://birdrfrontend.taylorgooge.repl.co/help#0">here</a>
-            </div>
+          {showLocError || props.locError && (
+            <LocationError />
           )}
         </div>
         <div className="col">

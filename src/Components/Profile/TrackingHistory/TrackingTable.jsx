@@ -18,9 +18,11 @@ const TrackingTable = (props) => {
       $('#tracking-table').DataTable();
     });
   }
+
   useEffect(() => {
     initializeDataTable();
   }, []);
+
   useEffect(() => {
     setLoggedBird(props.data);
   }, [props.data])

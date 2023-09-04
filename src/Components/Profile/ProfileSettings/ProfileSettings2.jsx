@@ -1,10 +1,9 @@
 import React from "react";
-import { useAuth0 } from "@auth0/auth0-react";
 import ProfileMenu from "../ProfileMenu";
 import EditProfileForm from "./EditProfileForm";
 import EditPasswordForm from "./EditPasswordForm";
+
 const ProfileSettings2 = (props) => {
-  const { user, isAuthenticated, isLoading } = useAuth0();
   return (
     <section className="position-relative">
       <div className="container position-relative">

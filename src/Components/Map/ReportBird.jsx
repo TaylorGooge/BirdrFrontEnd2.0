@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form'
+
 export default function ReportBird(props) {
   const [englishName, setEnglishName] = useState('');
   const [scientificName, setScientificName] = useState('');
   const [fourCode, setFourCode] = useState('');
   const [sixCode, setSixCode] = useState('');
 
-  
   return (
     <div>
       {props.showModal && (
@@ -14,7 +14,7 @@ export default function ReportBird(props) {
           <div className="modal-dialog" role="document">
             <div className="modal-content">
               <div className="modal-header">
-                <h5 className="modal-title">Modal Title</h5>
+                <h5 className="modal-title">Report missing bird</h5>
                 <button type="button" className="close" onClick={props.handleCloseModal}>
                   <span aria-hidden="true">&times;</span>
                 </button>

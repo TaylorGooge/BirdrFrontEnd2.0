@@ -10,6 +10,7 @@ const TrackingHistory = () => {
   const [showFetchError, setShowFetchError] = useState(false);
   const [showDeleteError, setShowDeleteError] = useState(false);
   const [showUpdateError, setShowUpdateError] = useState(false);
+
   const getBirdSightingById = async (id) => {
     try {
       const response = await makeApiCall(`/birdSighting/user/${user.sub}`, "GET");
@@ -36,9 +37,11 @@ const TrackingHistory = () => {
       setShowDeleteError(true);
     }
   }
+
   useEffect(() => {
     getBirdSightingById();
   }, []);
+
   return (
     isAuthenticated && (
       <main className="main-content" id="main-content">
@@ -75,7 +78,7 @@ const TrackingHistory = () => {
                         {showFetchError && <div className="alert alert-danger">
                           <strong>Error:</strong> Unable to fetch tracking history.
                         </div>}
-                        {loggedBird && <TrackingTable data={loggedBird} handleDelete={handleDelete} showDeleteError = {showDeleteError} showUpdateError={showUpdateError} />}
+                        {loggedBird && <TrackingTable data={loggedBird} handleDelete={handleDelete} showDeleteError={showDeleteError} showUpdateError={showUpdateError} />}
                       </div>
                     </div>
                   </div>

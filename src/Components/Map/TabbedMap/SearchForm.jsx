@@ -13,16 +13,16 @@ export default function SearchForm(props) {
   let [searchGroup, setSearchGroup] = useState(null);
   let [showSearchFailure, setShowSearchFailure] = useState(null);
   let [showSearchError, setShowSearchError] = useState(null);
-  let [rawData, setRawData] = useState(null);
   let [geoJson, setGeoJson] = useState(null);
 
- const handleSpeciesSearchChange = selectedOption => {
-     setSearchSpecies(selectedOption.birdID);
+  const handleSpeciesSearchChange = selectedOption => {
+    setSearchSpecies(selectedOption.birdID);
   };
-   const handleGroupSearchChange = selectedOption => {
-     setSearchGroup(selectedOption.id);
-  
+  const handleGroupSearchChange = selectedOption => {
+    setSearchGroup(selectedOption.id);
+
   };
+
   const postSearchByBird = async () => {
     if (searchSpecies === 0 || setSearchSpecies === null) {
       return;
@@ -36,6 +36,7 @@ export default function SearchForm(props) {
       setShowSearchFailure(true);
     }
   };
+
   const postSearchByGroup = async () => {
     if (searchGroup == 0 || searchGroup == null) {
       return;
@@ -49,6 +50,7 @@ export default function SearchForm(props) {
       setShowSearchFailure(true);
     }
   };
+
   useEffect(() => {
     fetchDataHelper()
       .then((data) => {
@@ -59,9 +61,11 @@ export default function SearchForm(props) {
         console.log(error);
       });
   }, []);
+
   const clearResults = () => {
     setGeoJson(props.geoJson);
   };
+
   return (
     <>
       <div className="d-flex align-items-center mb-4">
@@ -80,10 +84,10 @@ export default function SearchForm(props) {
             getOptionValue={option => option.birdId}
             options={speciesList}
           >
-          </Select> 
+          </Select>
         </div>
         <div className="col">
-          <button type="submit" id="search-submitBird" data-testid = 'search-submitBird'className="btn btn-primary" onClick={postSearchByBird}>
+          <button type="submit" id="search-submitBird" data-testid='search-submitBird' className="btn btn-primary" onClick={postSearchByBird}>
             Submit
           </button>
         </div>
@@ -124,7 +128,10 @@ export default function SearchForm(props) {
           </div>
         )}
       </div>
-       <a id="searchClear" onClick={clearResults}>clear results</a>
+      <a id="searchClear" onClick={clearResults}>clear results</a>
+      {props.locError && (
+        <LocationError />
+      )}
       <hr className="my-7" />
       <ImprovedMap geoJson={geoJson ? geoJson : props.geoJson} key={2} keyVal={2} />
     </>

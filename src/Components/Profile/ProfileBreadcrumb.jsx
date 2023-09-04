@@ -13,7 +13,7 @@ const ProfileBreadcrumb = (props) => {
         <li className="breadcrumb-item active">
           <a href="/">Home</a>
         </li>
-        <li className= {props.active == 'profile'  || props.active === 'settings' || props.active == 'tracking' ? 'breadcrumb-item active' : 'breadcrumb-item'}>Profile</li>
+        <li className={props.active == 'profile' || props.active === 'settings' || props.active == 'tracking' ? 'breadcrumb-item active' : 'breadcrumb-item'}>Profile</li>
         {/* <li className={props.active === 'settings' || props.active === 'tracking'? 'breadcrumb-item active' : 'breadcrumb-item'}>Settings</li> */}
         <li className={props.active === 'tracking' ? 'breadcrumb-item active' : 'breadcrumb-item'}>Tracking</li>
       </ol>

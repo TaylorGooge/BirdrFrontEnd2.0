@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { Loader } from '@googlemaps/js-api-loader';
-//import map_config from './map_config.js'
 
 const ImprovedMap = (props) => {
   let [map, setMap] = useState(null);
@@ -8,7 +7,7 @@ const ImprovedMap = (props) => {
   let [windowOpen, setWindowOpen] = useState(false);
   let [showCenter, setShowCenter] = useState(true);
   let [initLocationButton, setInitLocationButton] = useState(false);
-  
+
 
   const initMap = () => {
     const loader = new Loader({
@@ -108,12 +107,14 @@ const ImprovedMap = (props) => {
       populateMap();
     }
   }, [map, props.geoJson]);
+
   useEffect(() => {
     if (map && !initLocationButton) {
       panToCurrentLocation();
       setPanToLocation();
     }
   }, [map, initLocationButton]);
+
   return (
     <div id={`map-${props.keyVal}`} style={{ height: '500px' }} className="d-flex justify-content-center">
     </div>

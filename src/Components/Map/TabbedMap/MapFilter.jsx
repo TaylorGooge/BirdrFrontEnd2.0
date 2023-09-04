@@ -1,16 +1,11 @@
 import ImprovedMap from '../Map/ImprovedMap';
 import React, { useEffect, useState } from 'react';
-import { useAuth0 } from "@auth0/auth0-react";
 import { makeApiCall } from '../../../../api';
-import { fetchDataHelper } from '../helpers/fetchDataHelper';
-import { fetchGeoHelper } from '../helpers/fetchGeoHelper';
 import { toGeoJsonHelper } from '../helpers/toGeoJsonHelper';
 import { getDatesHelper } from '../helpers/getDatesHelper';
 import { filterHelper } from '../helpers/filterHelper';
-import { getSeasonMonthsHelper } from '../helpers/getSeasonMonthsHelper';
-import { getSeasonDateRangeHelper } from '../helpers/getSeasonDateRangeHelper';
 import dateResolver from 'date-season';
-import axios from 'axios';
+
 
 export default function MapFilter(props) {
   const [selectedValue, setSelectedValue] = useState('');
@@ -20,9 +15,11 @@ export default function MapFilter(props) {
     setSelectedValue(event.target.value);
     showVal(event.target.value)
   };
+
   useEffect(() => {
     setGeoJson(props.geoJson);
   }, []);
+
   const showVal = (val) => {
     if (val == 1) {
       return getDates(7);
@@ -40,33 +37,34 @@ export default function MapFilter(props) {
       return clearResults();
     }
   };
+
   const getDates = (int) => {
     let result = getDatesHelper(int)
     filter(result[0], result[1]);
   }
-  const winterSeasonHelper = (date, obj) => {
-    return winterSeasonHelper(date, obj);
-  }
-  const getSeason = async () => {
-    const currDate = new Date();
+
+  const getSeason = async (currentDate = null) => {
+    const currDate = currentDate || new Date();
     const NorthernHemisphere = dateResolver();
     const season = NorthernHemisphere(currDate);
-     const year = currDate.getFullYear();
-      try {
-        const response = await makeApiCall(`/birdSighting/year/${year}/season/${season}`, 'GET');
-        if (response.data) {
-          let data = toGeoJsonHelper(response.data)
-          setGeoJson(data)
-          
-        }
+    const year = currDate.getFullYear();
+    try {
+      const response = await makeApiCall(`/birdSighting/year/${year}/season/${season}`, 'GET');
+      if (response.data) {
+        let data = toGeoJsonHelper(response.data)
+        setGeoJson(data)
+
+      }
     } catch (error) {
       console.log(error)
     }
   }
+
   const filter = async (start, end) => {
     let res = await filterHelper(start.toISOString(), end.toISOString());
     setGeoJson(res)
   }
+
   const clearResults = () => {
     setGeoJson(props.geoJson);
   }
@@ -147,9 +145,12 @@ export default function MapFilter(props) {
           </div>
         </div>
         <a id='clearFilters' onClick={clearResults}>clear results</a>
+        {props.locError && (
+          <LocationError />
+        )}
 
       </div>
-        <hr className="my-7" />
+      <hr className="my-7" />
       <ImprovedMap geoJson={geoJson ? geoJson : props.geoJson} key={3} keyVal={3} />
     </div>
   );

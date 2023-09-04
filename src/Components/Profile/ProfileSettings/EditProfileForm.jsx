@@ -1,20 +1,20 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import axios from 'axios';
 
 const EditProfileForm = (props) => {
   const { user, isAuthenticated, isLoading } = useAuth0();
-   const [firstName, setFirstName] = useState(user.given_name);
+  const [firstName, setFirstName] = useState(user.given_name);
   const [lastName, setLastName] = useState(user.family_name);
+  
   const saveChanges = async () => {
-    console.log(user.sub)
     const url = `https://birdr.us.auth0.com/api/v2/${user.sub}`;
     const headers = {
-      authorization: `Bearer ${config.api-token}`,
+      authorization: `Bearer ${config.api - token}`,
       'cache-control': 'no-cache',
       'content-type': 'application/json',
     };
-     const data = {
+    const data = {
       given_name: firstName,
       family_name: lastName,
     };
@@ -23,23 +23,26 @@ const EditProfileForm = (props) => {
       // handle response here
     });
   }
+  
   const handleChangeLastName = (event) => {
     if (event.target.value.length === 0) {
       setLastName(user.family_name);
-      
-    } else{
+
+    } else {
       setLastName(event.target.value);
     }
   }
-    const handleChangeFirstName = (event) => {
-      if (event.target.value.length === 0) {
-        setFirstName(user.given_name);
-        
-      } else{
-        setFirstName(event.target.value);
-      };
-    
+  
+  const handleChangeFirstName = (event) => {
+    if (event.target.value.length === 0) {
+      setFirstName(user.given_name);
+
+    } else {
+      setFirstName(event.target.value);
+    };
+
   }
+  
   return (
     <form autoComplete="false">
       <div className="row align-items-center">
