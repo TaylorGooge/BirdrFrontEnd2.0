@@ -43,8 +43,8 @@ export default function MapFilter(props) {
     filter(result[0], result[1]);
   }
 
-  const getSeason = async (currentDate = null) => {
-    const currDate = currentDate || new Date();
+  const getSeason = async () => {
+    const currDate = new Date();
     const NorthernHemisphere = dateResolver();
     const season = NorthernHemisphere(currDate);
     const year = currDate.getFullYear();

@@ -3,7 +3,3 @@ node_modules
 dist
 dist-ssr
 *.local
-src/auth_config.js
-src/Components/Learn/nuthatch_config.js
-src/Components/Map/Map/map_config.js
-api_config.js
