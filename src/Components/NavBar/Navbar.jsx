@@ -9,7 +9,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 export default function NavBar() {
   const { user, isAuthenticated, isLoading } = useAuth0();
   return (
-      <header className="z-index-fixed">
+    <header className="z-index-fixed">
       <Navbar expand="lg" className="navbar-light">
         <div className="container-fluid position-relative">
           <a className="navbar-brand" href="/">
@@ -21,7 +21,7 @@ export default function NavBar() {
                 <i></i>
               </span>
             </button>
-            {isAuthenticated && <UserInfo/>}
+            {isAuthenticated && <UserInfo />}
           </div>
           <div className="collapse navbar-collapse" id="mainNavbarTheme">
             <ul className="navbar-nav ms-auto">
@@ -31,8 +31,26 @@ export default function NavBar() {
               <li className="nav-item">
                 <Link className="nav-link" to="/map">Map</Link>
               </li>
-               <li className="nav-item">
+              {/* <li className="nav-item">
                 <Link className="nav-link" to="/learn">Learn</Link>
+              </li> */}
+              <li className="nav-item dropdown">
+                <a className="nav-link dropdown-toggle " href="index.html" role="button"
+                  data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Learn
+                </a>
+                <div className="dropdown-menu dropdown-menu-md dropdown-menu-start py-0 pe-lg-0">
+                  <div className="overflow-hidden rounded-end">
+                    <div className="row mx-0">
+                      <div className="col-lg-5 position-relative">
+                        <div className="py-1 py-lg-3 d-lg-flex flex-column">
+                          <Link className="nav-link" to="/learn/blog">Blog</Link>
+                          <Link className="nav-link" to="/learn">Learn About Birds</Link>
+                          <Link className="nav-link" to="learn/checklists">Bird Wathcing Check Lists</Link>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </li>
               <li className="nav-item dropdown">
                 <a className="nav-link dropdown-toggle " href="index.html" role="button"
@@ -44,9 +62,9 @@ export default function NavBar() {
                       <div className="col-lg-5 position-relative">
                         <div className="py-1 py-lg-3 d-lg-flex flex-column">
                           <Link className="nav-link" to="/data">Data Nest</Link>
-                           <Link className="nav-link" to="/contact">Contact</Link>
-                           <Link className="nav-link" to="/help">Help</Link>
-                           <Link className="nav-link" to="/about">About</Link>
+                          <Link className="nav-link" to="/contact">Contact</Link>
+                          <Link className="nav-link" to="/help">Help</Link>
+                          <Link className="nav-link" to="/about">About</Link>
                         </div>
                       </div>
                     </div>
@@ -57,13 +75,13 @@ export default function NavBar() {
                 <Link className="nav-link" to="/profile">Profile</Link>
               </li>}
               <li className="nav-item">
-                {isAuthenticated ? <LogoutButton/> : <LoginButton/>}
+                {isAuthenticated ? <LogoutButton /> : <LoginButton />}
               </li>
             </ul>
           </div>
         </div>
       </Navbar>
     </header>
-     
+
   );
 }
