@@ -1,9 +1,11 @@
 import React from 'react';
 import { useAuth0 } from "@auth0/auth0-react";
+
 export default function FeatureImage3() {
   const { loginWithRedirect } = useAuth0();
+
   return (
-      <div className="col-lg-5 order-lg-last position-relative">
+    <div className="col-lg-5 order-lg-last position-relative">
       <div className="d-flex align-items-center mb-3" data-aos="fade-up">
         <div className="border-top border-warning width-3x border-2"></div>
         <h6 className="mb-0 ms-3 text-muted">The process</h6>
@@ -29,10 +31,8 @@ export default function FeatureImage3() {
             </div>
           </div>
         </li>
-        {/*/.step-item*/}
-        {/*/.step-item*/}
       </ul>
     </div>
-                          
+
   );
 }

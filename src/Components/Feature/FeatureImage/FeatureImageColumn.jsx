@@ -1,5 +1,5 @@
 import React from 'react';
-import FeatureImageColumn2 from './FeatureImageColumn2';
+
 export default function FeatureImageColumn() {
   return (
     <div className="col-lg-6 col-xl-5 ps-lg-7 ps-5 pb-4 order-lg-last me-lg-auto mb-5 mb-lg-0 position-relative" data-aos="fade-down">

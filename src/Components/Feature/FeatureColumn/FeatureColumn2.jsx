@@ -1,5 +1,5 @@
 import React from 'react';
-export default function FeatureColumn3() {
+export default function FeatureColumn2() {
   return (
     <div className="col-md-6 col-xl-3 mb-4 mb-md-0" data-aos="fade-up" data-aos-delay="100">
       <div className="card p-4 rounded-4 rounded-top-end-0 rounded-bottom-start-0 hover-lift hover-shadow-xl">

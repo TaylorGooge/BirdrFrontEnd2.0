@@ -10,12 +10,12 @@ import TrackingHistoryPage from "./Pages/TrackingHistory";
 import { AuthenticationGuard } from "./Components/AuthGuard/AuthenticationGuard";
 import Errorpage from "./Pages/Error";
 import Helppage from "./Pages/Help";
-import Learnpage from "./Pages/Learn";
+import Learnpage from "./Pages/Learn/LearnPage";
 import Datapage from './Pages/Data';
-import LearnArticleListPage from './Pages/LearnArticleListPage'
-import LearnArticleBodyPage from './Pages/LearnArticleBodyPage'
-import CheckListsPage from './Pages/CheckListsPage'
-import SingleCheckListPage from './Pages/SingleCheckListPage'
+import LearnArticleListPage from './Pages/Learn/LearnArticleListPage'
+import LearnArticleBodyPage from './Pages/Learn/LearnArticleBodyPage'
+import CheckListsPage from './Pages/Learn/CheckListsPage'
+import SingleCheckListPage from './Pages/Learn/SingleCheckListPage'
 
 export default function App() {
   return (
@@ -33,7 +33,7 @@ export default function App() {
         <Route path="/help" element={<Helppage />} />
         <Route path="/learn/:birdId?" element={<Learnpage />} />
         <Route path="/learn/checklists" element={<CheckListsPage />} />
-        <Route path="/learn/checklists/single/:item?" element={<SingleCheckListPage />} />
+        <Route path="/learn/checklists/single/:item?" element={<AuthenticationGuard component={SingleCheckListPage} />} />
         <Route path="/learn/blog" element={<LearnArticleListPage />} />
         <Route path="/learn/blog/:topic?" element={<LearnArticleBodyPage />} />
         <Route path="/data" element={<Datapage />} />

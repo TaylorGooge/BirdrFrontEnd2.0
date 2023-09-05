@@ -32,10 +32,12 @@ const Table = (props) => {
             <td>{item.genus}</td>
             <td>{item.scientificName}</td>
             <td>{item.annotation}</td>
+            <td>{item.statusHawaiian}</td>
             <td>{item.statusAccidental}</td>
             <td>{item.statusExtinct}</td>
             <td>{item.statusMisplaced}</td>
             <td>{item.statusNonbreeding}</td>
+            <td>{item.sighted}</td>
           </tr>
         ))}
       </tbody>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useLocation } from "react-router-dom";
-import Error from '../Error/Error'
+import Error from '../../Error/Error'
 
 export const ArticleBody = () => {
   const location = useLocation();

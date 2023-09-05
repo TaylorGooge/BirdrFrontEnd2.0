@@ -45,7 +45,7 @@ export default function NavBar() {
                         <div className="py-1 py-lg-3 d-lg-flex flex-column">
                           <Link className="nav-link" to="/learn/blog">Blog</Link>
                           <Link className="nav-link" to="/learn">Learn About Birds</Link>
-                          <Link className="nav-link" to="learn/checklists">Bird Wathcing Check Lists</Link>
+                          <Link className="nav-link" to="/learn/checklists">Bird Wathcing Check Lists</Link>
                         </div>
                       </div>
                     </div>

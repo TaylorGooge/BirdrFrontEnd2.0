@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { makeApiCall } from '../../../api';
+import { makeApiCall } from '../../../../api';
 import Select from 'react-select';
 import axios from 'axios';
 import Gallery from './Gallery';
