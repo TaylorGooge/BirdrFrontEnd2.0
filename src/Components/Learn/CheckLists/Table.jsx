@@ -19,25 +19,15 @@ const Table = (props) => {
       <thead>
         <tr>
           {props.cols.map(val => (<th key={val}>{val}</th>))}
+          <th key={'sighted'}>sighted</th>
         </tr>
       </thead>
       <tbody className='tbody'>
         {props.data.map((item, index) => (
           <tr key={index}>
-            <td>{item.birdRank}</td>
-            <td>{item.englishName}</td>
-            <td>{item.orderName}</td>
-            <td>{item.family}</td>
-            <td>{item.subFamily}</td>
-            <td>{item.genus}</td>
-            <td>{item.scientificName}</td>
-            <td>{item.annotation}</td>
-            <td>{item.statusHawaiian}</td>
-            <td>{item.statusAccidental}</td>
-            <td>{item.statusExtinct}</td>
-            <td>{item.statusMisplaced}</td>
-            <td>{item.statusNonbreeding}</td>
-            <td>{item.sighted}</td>
+            {Object.keys(item).map((key, i) => (
+              <td key={i}>{item[key]}</td>
+            ))}
           </tr>
         ))}
       </tbody>

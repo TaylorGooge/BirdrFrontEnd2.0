@@ -6,7 +6,6 @@ export const ArticleBody = () => {
   const location = useLocation();
 
   const article = location.state.article;
-  console.log(article)
 
   if (!article) {
     return (

@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { makeApiCall } from '../../../../api';
-import Table from './Table';
 import { useLocation } from 'react-router-dom';
 import { useAuth0 } from "@auth0/auth0-react";
+import Table from './Table'
 
 
 const SingleCheckList = () => {
 
   const [showFetchError, setShowFetchError] = useState(false);
   const [checkLists, setCheckLists] = useState(null);
+  const [checkListCols, setCheckListsCols] = useState(null);
   const [totals, setTotals] = useState(null);
   const location = useLocation();
 
@@ -16,7 +17,7 @@ const SingleCheckList = () => {
   const id = location.state.id
   const { user, isAuthenticated } = useAuth0();
 
-  if (!id) {
+  if (!id || !name) {
     return (
       <Error />
     )
@@ -27,14 +28,15 @@ const SingleCheckList = () => {
       getCheckList();
     }
 
-  }, [id, user]);
+  }, [id, user, name]);
 
   const getCheckList = async () => {
     const response = await makeApiCall(`/checklists/${id}/${user.sub}`, "GET");
     const responseTotals = await makeApiCall(`/checklists/totals/${id}/${user.sub}`, "GET");
     if (response.status == 200) {
       setShowFetchError(false);
-      setCheckLists(response.data);
+      setCheckLists(response.data['results']);
+      setCheckListsCols(response.data['rows']);
     }
     else {
       setShowFetchError(true);
@@ -61,7 +63,7 @@ const SingleCheckList = () => {
       <section className="border-bottom">
         <div className="container py-9 py-lg-11">
           <div className="d-flex align-items-center mb-5">
-            <h6 className="mb-0 flex-grow-0 pe-3">{name}</h6>
+            <h6 className="mb-0 flex-grow-0 pe-3">{name? name : 'checklist'}</h6>
             {totals ? (
               <div>
                 <p>Total Birds Sighted: {totals['totalSighted']}</p>
@@ -81,7 +83,7 @@ const SingleCheckList = () => {
                   <strong>Error:</strong> Unable to fetch that check lists.
                 </div>
               ) : (
-                checkLists && <Table data={checkLists} cols={['Rank', 'English Name', 'Order', 'Family', 'Subfamily', 'Genus', 'Scientific Name', 'Annotation', 'Hawaiian', 'Accidental', 'Extinct', 'Misplaced', 'Nonbreeding', 'Sighted']} />
+                checkLists && <Table data={checkLists} cols={checkListCols} />
               )}
             </div>
           </div>
