@@ -1,10 +1,13 @@
 import React from 'react';
 import './Hero.css';
+import BaseSection from '../Reusable/Section/BaseSection';
+import {Row, Col, Container} from 'react-bootstrap';
 export default function Hero() {
   return (
-    
-    <section className="position-relative">
-      <div className="container-fluid position-relative z-index-1">
+    <BaseSection
+      sectionClassName="position-relative"
+    >
+      <Container fluid className="position-relative z-index-1">
         <div className="position-relative rounded-4 overflow-hidden bg-dark">
           <div className="hero">
             <img src="img/hero.jpg" alt="Hero Image" className="img-fluid" />
@@ -14,7 +17,10 @@ export default function Hero() {
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </Container>
+    </BaseSection>
+
+
+
   );
 }

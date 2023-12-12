@@ -1,14 +1,11 @@
 import React from 'react';
-import NavBar from '../Components/NavBar/Navbar';
-import Footer from '../Components/Footer/Footer';
+import BasePage from './BasePage'
 import Help from '../Components/Help/Help';
 
 export default function Helppage() {
   return (
-    <div>
-      <NavBar />
+    <BasePage>
       <Help/>
-      <Footer />
-    </div>
+    </BasePage>
   );
 }

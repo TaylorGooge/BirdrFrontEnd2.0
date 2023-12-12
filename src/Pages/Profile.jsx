@@ -1,15 +1,12 @@
 import React from 'react';
-import NavBar from '../Components/NavBar/Navbar';
 import Profile from '../Components/Profile/Profile';
-import Footer from '../Components/Footer/Footer';
+import BasePage from './BasePage';
 
 export default function Profilepage() {
   
   return (
-    <div>
-      <NavBar />
+    <BasePage>
       <Profile />
-      <Footer />
-    </div>
+    </BasePage>
   );
 }

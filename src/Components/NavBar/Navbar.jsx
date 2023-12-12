@@ -31,9 +31,7 @@ export default function NavBar() {
               <li className="nav-item">
                 <Link className="nav-link" to="/map">Map</Link>
               </li>
-              {/* <li className="nav-item">
-                <Link className="nav-link" to="/learn">Learn</Link>
-              </li> */}
+    
               <li className="nav-item dropdown">
                 <a className="nav-link dropdown-toggle " href="index.html" role="button"
                   data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Learn

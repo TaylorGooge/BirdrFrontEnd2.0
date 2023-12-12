@@ -2,16 +2,22 @@ import React, { useState, useEffect } from 'react';
 import { makeApiCall } from '../../../../api';
 import { Link } from 'react-router-dom';
 import { useAuth0 } from "@auth0/auth0-react";
-
+import BaseSection from '../../Reusable/Section/BaseSection';
 const CheckLists = () => {
 
   const [showFetchError, setShowFetchError] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [checkLists, setCheckLists] = useState(null);
   const [totalsArray, setTotalsArray] = useState(null)
   const { user } = useAuth0();
 
   useEffect(() => {
-    getCheckLists();
+    if (user) {
+      setIsLoggedIn(true);
+      getCheckLists();
+
+    }
+
   }, []);
 
   useEffect(() => {
@@ -36,8 +42,10 @@ const CheckLists = () => {
   }
 
   const getCheckLists = async () => {
+
     try {
       const response = await makeApiCall(`/checklists`, "GET");
+
 
       if (response.status == 200) {
         setShowFetchError(false);
@@ -55,7 +63,9 @@ const CheckLists = () => {
 
   return (
     <main className="main-content pb-4" id="main-content">
-      <section className="position-relative bg-gradient-tint">
+      <BaseSection
+        sectionClassName="position-relative bg-gradient-tint"
+      >
         <div className="container position-relative pt-14 pb-9">
           <div className="row pt-lg-9 pb-lg-4">
             <div className="col-lg-10 mx-auto text-center">
@@ -64,8 +74,10 @@ const CheckLists = () => {
             </div>
           </div>
         </div>
-      </section>
-      <section className="border-bottom">
+      </BaseSection>
+      <BaseSection
+        sectionClassName="border-bottom"
+      >
         <div className="container py-9 py-lg-11">
           <div className="d-flex align-items-center mb-5">
 
@@ -80,6 +92,11 @@ const CheckLists = () => {
           <div className="flex-grow-1 pb-1 border-bottom border-light"></div>
           <div className="row mt-4">
             <div className="col">
+              {!isLoggedIn && 
+                <div className="alert alert-warning">
+                  <strong>Warning:</strong> Checklists are available to registered users.
+                </div>
+              }
               {showFetchError ? (
                 <div className="alert alert-danger">
                   <strong>Error:</strong> Unable to fetch checklists.
@@ -116,7 +133,8 @@ const CheckLists = () => {
 
           </div>
         </div>
-      </section>
+      </BaseSection>
+
 
 
     </main>

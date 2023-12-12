@@ -1,14 +1,12 @@
 import React from 'react';
-import NavBar from '../Components/NavBar/Navbar';
+import BasePage from './BasePage'
 import TabbedMapNav from '../Components/Map/TabbedMapNav';
-import Footer from '../Components/Footer/Footer';
+
 
 export default function Mappage() {
   return (
-    <div>
-      <NavBar />
+    <BasePage>
       <TabbedMapNav />
-      <Footer />
-    </div>
+    </BasePage>
   );
 }

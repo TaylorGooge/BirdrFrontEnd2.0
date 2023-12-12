@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { articles } from './articles'
 import { Link } from 'react-router-dom';
+import BaseSection from '../../Reusable/Section/BaseSection'; 
 
 
 
@@ -8,7 +9,8 @@ const ArticleList = () => {
 
   return (
     <main>
-      <section>
+      <BaseSection
+      >
         <div className="container pt-14 pb-9 pb-lg-12">
           <div className="row pt-lg-7">
             <div className="col-md-10 col-lg-8">
@@ -16,8 +18,10 @@ const ArticleList = () => {
             </div>
           </div>
         </div>
-      </section>
-      <section className="position-relative bg-white">
+      </BaseSection>
+      <BaseSection
+        sectionClassName="position-relative bg-white"
+      >
         <div className="container z-index-1 position-relative pb-9 pb-lg-11">
           {articles.map(article => (
             <article
@@ -62,7 +66,9 @@ const ArticleList = () => {
           ))}
 
         </div>
-      </section>
+      </BaseSection>
+
+
     </main >
   );
 };

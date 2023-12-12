@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form'
+import AButton from '../Reusable/Buttons/aButton';
 
 export default function ReportBird(props) {
   const [englishName, setEnglishName] = useState('');
@@ -15,9 +16,13 @@ export default function ReportBird(props) {
             <div className="modal-content">
               <div className="modal-header">
                 <h5 className="modal-title">Report missing bird</h5>
-                <button type="button" className="close" onClick={props.handleCloseModal}>
-                  <span aria-hidden="true">&times;</span>
-                </button>
+                <AButton 
+                  type="button" 
+                  className="close" 
+                  onClick={props.handleCloseModal}
+                  spanMessage='&times;'
+
+                  />
               </div>
               <div className="modal-body">
                   <Form action="https://formspree.io/f/mleazwnd" method="post" className='needs-validation' noValidate>
@@ -31,13 +36,18 @@ export default function ReportBird(props) {
                     <Form.Label htmlFor="sixCode">Six Letter Code</Form.Label>
                     <Form.Control type="text" name ='Six Code' value={sixCode} onChange={(e) => setSixCode(e.target.value)} id="sixCode" />
                   </div>
+               
                   <button type="submit" className="mb-3 btn btn-primary" >Submit</button>
                   </Form>
               </div>
               <div className="modal-footer">
-                <button type="button" className="btn btn-secondary" onClick={props.handleCloseModal}>
-                  Close
-                </button>
+                <AButton
+                  type="button" 
+                  className="btn btn-secondary"
+                  onClick={props.handleCloseModal}
+                  spanMessage= 'Close'
+                  />
+
               </div>
             </div>
           </div>

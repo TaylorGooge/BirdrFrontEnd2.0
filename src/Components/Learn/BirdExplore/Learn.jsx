@@ -4,6 +4,8 @@ import Select from 'react-select';
 import axios from 'axios';
 import Gallery from './Gallery';
 import BirdTable from './BirdTable';
+import AButton from '../../Reusable/Buttons/aButton';
+import BaseSection from '../../Reusable/Section/BaseSection';
 
 
 const Learn = () => {
@@ -70,7 +72,7 @@ const Learn = () => {
     }
 
   };
-  
+
   const handleSearchChange = selectedOption => {
     setSearchValue(selectedOption.scientificName);
   }
@@ -141,7 +143,9 @@ const Learn = () => {
 
   return (
     <main className="main-content pb-4" id="main-content">
-      <section className="position-relative bg-gradient-tint">
+      <BaseSection
+        sectionClassName="position-relative bg-gradient-tint"
+      >
         <div className="container position-relative pt-14 pb-9">
           <div className="row pt-lg-9 pb-lg-4">
             <div className="col-lg-10 mx-auto text-center">
@@ -150,8 +154,14 @@ const Learn = () => {
             </div>
           </div>
         </div>
-      </section>
-      <section className="border-bottom">
+      </BaseSection>
+
+
+
+      <BaseSection
+        sectionClassName="border-bottom"
+      >
+
         <div className="container py-9 py-lg-11">
           <div className="d-flex align-items-center mb-5">
             <h6 className="mb-0 flex-grow-0 pe-3">Search for a Bird to Learn More</h6>
@@ -171,18 +181,23 @@ const Learn = () => {
                 getOptionValue={option => option.birdId}
                 options={speciesList}
               >
-            ))}
+
               </Select>
             </div>
             <div className="col">
-              <button id="submitBird" className="btn btn-primary" onClick={postBirdSearch} >
-                Submit
-              </button>
+              <AButton
+                d="submitBird"
+                className="btn btn-primary"
+                onClick={postBirdSearch}
+                spanMessage='Submit'
+              />
             </div>
             {showError && <div className="alert alert-danger" role="alert">We don't currently have any information to display about this bird.</div>}
           </div>
         </div>
-      </section>
+      </BaseSection>
+
+
       {showImg && <Gallery images={images} />}
       {showTable && <BirdTable data={tableData} />}
 

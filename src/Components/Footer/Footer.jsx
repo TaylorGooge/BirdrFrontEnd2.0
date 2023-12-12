@@ -1,5 +1,6 @@
-import React , {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container, Col, Row, Form } from 'react-bootstrap';
+import AButton from '../Reusable/Buttons/aButton';
 export default function Footer() {
   const [email, setEmail] = useState('');
   const setEmailHandler = (e) => {
@@ -10,13 +11,13 @@ export default function Footer() {
     getYear();
   }, []);
   const getYear = () => {
-    setYear(new Date().getFullYear()); 
+    setYear(new Date().getFullYear());
 
   };
   return (
     <footer id="footer" className="bg-secondary text-black position-relative">
-      <Container className="container position-relative z-index-1">
-        <Row className="row grid-separator align-items-stretch">
+      <Container className="position-relative z-index-1">
+        <Row className="grid-separator align-items-stretch">
           <Col className="col-md-7 col-lg-4 pe-md-6 py-lg-11 py-9">
             <div className="d-flex flex-column h-100">
               <h6 className="mb-4 opacity-50">Join our mail list</h6>
@@ -28,9 +29,11 @@ export default function Footer() {
                   <span className="invalid-feedback">This field is required</span>
                 </div>
                 <div className="d-grid">
-                  <button className="btn btn-primary" type="submit">
-                    Sign me up
-                  </button>
+                  <AButton
+                    className="btn btn-primary"
+                    type="submit"
+                    spanMessage="Sign me up"
+                  />
                 </div>
               </Form >
             </div>
@@ -60,9 +63,7 @@ export default function Footer() {
               <div className="mb-4 mb-sm-0 pe-sm-3">
                 <div>
                   <h6 className="mb-4 opacity-50">Birdr</h6>
-                  {/* <p className="mb-3">
-                    1845 N MLK JR Blvd #38382 <br /> Tallahassee<br /> FL 32303
-                  </p> */}
+
                 </div>
               </div>
               <div className="ps-sm-3">
@@ -74,12 +75,12 @@ export default function Footer() {
         </Row>
         <hr className="my-0" />
         <div>
-           <div className="row py-5">
-             <div className="col-sm-7 col-md-6 mb-3 mb-sm-0"></div>
+          <div className="row py-5">
+            <div className="col-sm-7 col-md-6 mb-3 mb-sm-0"></div>
           </div>
-           <div className="col-sm-5 col-md-6 small text-sm-end">
-             <span className="d-block lh-sm small text-muted">© Copyright  {year}. Birdr</span>
-           </div>
+          <div className="col-sm-5 col-md-6 small text-sm-end">
+            <span className="d-block lh-sm small text-muted">© Copyright  {year}. Birdr</span>
+          </div>
         </div>
       </Container>
     </footer>

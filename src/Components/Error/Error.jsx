@@ -1,10 +1,14 @@
 import React from 'react';
+import BaseSection from '../Reusable/Section/BaseSection';
+import { Row, Col, Container } from 'react-bootstrap';
 export default function Error() {
   return (
     <main className="main-content d-grid" id="main-content">
-      <section className="position-relative overflow-hidden">
-        <div className="container pt-14 pt-lg-15 pb-9">
-          <div className="row">
+      <BaseSection
+        sectionClassName="position-relative overflow-hidden"
+      >
+        <Container className="pt-14 pt-lg-15 pb-9">
+          <Row>
             <div className="col-md-10 col-lg-8 mx-auto text-center position-relative">
               <div className="position-relative z-index-1">
                 <div className="text-danger mb-5">
@@ -19,9 +23,12 @@ export default function Error() {
                   <i className="bx bx-left-arrow-alt lh-1 fw-normal me-2"></i>Back to Home</a>
               </div>
             </div>
-          </div>
-        </div>
-      </section>
+          </Row>
+        </Container>
+      </BaseSection>
+
+
+
     </main>
   );
 }

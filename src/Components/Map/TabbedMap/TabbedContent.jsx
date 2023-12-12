@@ -7,13 +7,13 @@ export default function TabbedContent(props) {
   return (
     <div className="tab-content">
       <div className="tab-pane fade show active" id="tab3-home" role="tabpanel">
-        <ReportForm geoJson={props.geoJson} locError={props.showLocError} />
+        <ReportForm geoJson={props.geoJson} locError={props.locError} />
       </div>
       <div className="tab-pane fade" id="tab3-profile" role="tabpanel">
-        < SearchForm geoJson={props.geoJson} locError={props.showLocError} />
+        < SearchForm geoJson={props.geoJson} locError={props.locError} />
       </div>
       <div className="tab-pane fade container-fluid" id="tab3-contact" role="tabpanel">
-        <MapFilter geoJson={props.geoJson} locError={props.showLocError} />
+        <MapFilter geoJson={props.geoJson} locError={props.locError} />
       </div>
     </div>
 

@@ -1,16 +1,13 @@
 import React from 'react';
-import NavBar from '../../Components/NavBar/Navbar';
-import Footer from '../../Components/Footer/Footer';
+import BasePage from '../BasePage'
 import ArticleBody from '../../Components/Learn/Articles/ArticleBody';
 
 const Learnpage = () => {
   
   return (
-     <div>
-      <NavBar />
+     <BasePage>
       <ArticleBody />
-      <Footer />
-    </div>
+    </BasePage>
   );
 };
 export default Learnpage;

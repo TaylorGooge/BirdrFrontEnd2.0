@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { makeApiCall } from '../../../api';
 import PieChart from './PieChart';
 import Map from './Map';
+import BaseSection from '../Reusable/Section/BaseSection'
+import {Container, Row} from 'react-bootstrap'
+
 
 const Data = () => {
   let [speciesData, setSpeciesData] = useState(null);
@@ -120,9 +123,11 @@ const Data = () => {
   }, []);
   return (
     <main className="main-content pb-4" id="main-content">
-      <section className="position-relative bg-gradient-tint">
-        <div className="container position-relative pt-14 pb-9">
-          <div className="row pt-lg-9 pb-lg-4">
+      <BaseSection 
+        sectionClassName="position-relative bg-gradient-tint"
+      >
+        <Container className="container position-relative pt-14 pb-9">
+          <Row className="row pt-lg-9 pb-lg-4">
             <div className="col-lg-10 mx-auto text-center">
               <h1 className="display-3 mb-2">Data Nest</h1>
               <p className="lead mb-0">Where Data Takes Flight</p>
@@ -131,11 +136,12 @@ const Data = () => {
                 <a className="btn btn-primary btn-lg w-100" href="/map" role="button">Get Started with Birdr</a>
               </span>
             </div>
-          </div>
-        </div>
-      </section>
+          </Row>
+        </Container>
+      </BaseSection>
+
       <hr className="my-4" />
-      <div className="container-fluid" >
+      <Container fluid >
         <h2 data-aos="fade-down" data-aos-delay="100">Top 10 Frequently Sighted Birds- By English Name</h2>
         <div className="d-flex justify-content-center hover-lift hover-shadow-xl" id="top10species" data-aos="fade-up" data-aos-delay="100">
           {speciesData && <PieChart data={speciesData} />}
@@ -146,15 +152,15 @@ const Data = () => {
         <div className="d-flex justify-content-center hover-lift hover-shadow-xl" id="top10group" data-aos="fade-up" data-aos-delay="100">
           {groupData && <PieChart data={groupData} />}
         </div>
-      </div>
+      </Container>
       <hr className="my-4" />
-      <div className="container-fluid">
+      <Container fluid >
         <h2 data-aos="fade-down" data-aos-delay="100">Where are people using Birdr?</h2>
         <div className="d-flex justify-content-center hover-lift hover-shadow-xl" id="overallMap" data-aos="fade-up" data-aos-delay="100">
 
           {locationData && <Map data={locationData} />}
         </div>
-      </div>
+      </Container>
     </main>
   );
 };

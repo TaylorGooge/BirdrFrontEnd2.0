@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form';
+import InputButton from '../Reusable/Buttons/InputButton';
+import BaseSection from '../Reusable/Section/BaseSection';
+import {Container, Row} from 'react-bootstrap';
 
 export default function ContactSection2() {
   const [name, setName] = useState('');
@@ -23,9 +26,11 @@ export default function ContactSection2() {
     setSubject(e.target.value);
   }
   return (
-    <section className="position-relative">
-      <div className="container py-9 py-lg-11">
-        <div className="row">
+    <BaseSection
+      sectionClassName='position-relative'
+      >
+      <Container className="py-9 py-lg-11">
+        <Row>
           <div className="col-md-8 col-lg-7 mb-7 mb-md-0 me-auto">
             <div className="position-relative">
               <h1> Contact form </h1>
@@ -34,7 +39,7 @@ export default function ContactSection2() {
               </p>
               <div className="width-7x pt-1 bg-primary mb-5"></div>
                  <Form method="POST" role="form" action="https://formspree.io/f/mwkzyepd" className="needs-validation mb-5 mb-lg-7">
-                <div className="row">
+                <Row>
                   <div className="col-sm-6 mb-3">
                     <Form.Label htmlFor="name">Your name</Form.Label>
                     <Form.Control type="text" onChange={(e) => setNameHandler(e)} name="name" value={name} id="name" placeholder="Your Name" required />
@@ -49,7 +54,7 @@ export default function ContactSection2() {
                     <Form.Label htmlFor="subject">Subject</Form.Label>
                     <Form.Control type="text" name="subject" onChange={(e) => setSubjectHandler(e)} value ={subject} id="subject" placeholder="I need help with..." required />
                   </div>
-                </div>
+                </Row>
                 <div className="mb-3">
                   <Form.Label htmlFor="message">Message</Form.Label>
                   <Form.Control as="textarea" onChange={(e) => setMessageHandler(e)} value={message} name="message" placeholder="Hi there...." required />
@@ -57,13 +62,21 @@ export default function ContactSection2() {
                 </div>
                 <div className="d-md-flex justify-content-between align-items-center">
                   <p className="small mb-4 text-muted mb-md-0">We'll get back to you in 1-2 business days.</p>
-                  <input type="submit" name="submit" value="Submit message" id="sendBtn" className="btn btn-lg btn-primary" />
+                  <InputButton 
+                    type="submit" 
+                    name="submit" 
+                    value="Submit message" 
+                    id="sendBtn" 
+                    className="btn btn-lg btn-primary"
+                    />
+
                 </div>
               </Form>
             </div>
           </div>
-        </div>
-      </div>
-    </section>
+        </Row>
+      </Container>
+    </BaseSection>
+
   );
 }

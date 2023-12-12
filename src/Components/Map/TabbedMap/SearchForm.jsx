@@ -4,6 +4,8 @@ import ImprovedMap from '../Map/ImprovedMap';
 import { toGeoJsonHelper } from '../helpers/toGeoJsonHelper';
 import { makeApiCall } from '../../../../api';
 import Select from 'react-select';
+import LocationError from './LocationError';
+import AButton from '../../Reusable/Buttons/aButton';
 
 export default function SearchForm(props) {
 
@@ -24,6 +26,7 @@ export default function SearchForm(props) {
   };
 
   const postSearchByBird = async () => {
+    console.log('called')
     if (searchSpecies === 0 || setSearchSpecies === null) {
       return;
     }
@@ -87,9 +90,14 @@ export default function SearchForm(props) {
           </Select>
         </div>
         <div className="col">
-          <button type="submit" id="search-submitBird" data-testid='search-submitBird' className="btn btn-primary" onClick={postSearchByBird}>
-            Submit
-          </button>
+          <AButton
+            type="submit"
+            id="search-submitBird"
+            datatestid='search-submitBird'
+            className="btn btn-primary"
+            onClick={postSearchByBird}
+            spanMessage='Submit'
+          />
         </div>
       </div>
       <hr className="my-7" />
@@ -108,14 +116,14 @@ export default function SearchForm(props) {
           </Select>
         </div>
         <div className="col">
-          <button
+
+          <AButton
             type="submit"
             id="search-submitBird-1"
             className="btn btn-primary"
             onClick={postSearchByGroup}
-          >
-            Submit
-          </button>
+            spanMessage='Submit'
+          />
         </div>
         {showSearchError && (
           <div className="alert alert-danger" role="alert">
@@ -130,7 +138,9 @@ export default function SearchForm(props) {
       </div>
       <a id="searchClear" onClick={clearResults}>clear results</a>
       {props.locError && (
-        <LocationError />
+        <LocationError
+          typeMessage='search your sightings'
+        />
       )}
       <hr className="my-7" />
       <ImprovedMap geoJson={geoJson ? geoJson : props.geoJson} key={2} keyVal={2} />

@@ -4,9 +4,9 @@ import ImprovedMap from '../Map/ImprovedMap';
 import { makeApiCall } from '../../../../api';
 import { useAuth0 } from "@auth0/auth0-react";
 import Select from 'react-select';
-import Tooltip from '@mui/material/Tooltip';
-import Button from '@mui/material/Button';
 import LocationError from './LocationError'
+import AButton from '../../Reusable/Buttons/aButton'
+import ToolTip from '../../Reusable/ToolTip/ToolTip'
 
 export default function ReportForm(props) {
   let [speciesList, setSpeciesList] = useState(null);
@@ -85,9 +85,11 @@ export default function ReportForm(props) {
       <div className="d-flex align-items-center mb-4">
         <h6 className="mb-0 me-3 me-md-4">
           Report a Sighting
-          <Tooltip title="Logging a bird adds a waypoint to the map so that birdwatchers can help each other find interesting birds." arrow>
-            <Button className="text-decoration-underline text-primary">?</Button>
-          </Tooltip>
+          <ToolTip 
+            title="Logging a bird adds a waypoint to the map so that birdwatchers can help each other find interesting birds."
+            className="text-decoration-underline text-primary"
+            spanMessage="?"
+            />
         </h6>
         <div className="border-bottom flex-grow-1"></div>
       </div>
@@ -115,20 +117,31 @@ export default function ReportForm(props) {
             </div>
           )}
           {showLocError || props.locError && (
-            <LocationError />
+            <LocationError
+              typeMessage='report sightings'
+            />
           )}
         </div>
         <div className="col">
-          <button id="submitBird" className="btn btn-primary" onClick={postBirdSighting} data-testid="submitBird">
-            Submit
-          </button>
+          <AButton
+            spanMessage='Submit'
+            type="button"
+            id="submitBird"
+            className="btn btn-primary"
+            onClick={postBirdSighting}
+            datatestid="submitBird"
+          />
         </div>
       </div>
       <div className="row mt-4">
         <div className="col">
-          <button type="button" className="btn btn-primary" onClick={handleButtonClick}>
-            Is the bird you saw not listed?
-          </button>
+          <AButton
+            spanMessage='Is the bird you saw not listed?'
+            type="button"
+            className="btn btn-primary"
+            onClick={handleButtonClick}
+          />
+
         </div>
         <div className="col"></div>
       </div>

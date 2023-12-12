@@ -5,7 +5,8 @@ import { toGeoJsonHelper } from '../helpers/toGeoJsonHelper';
 import { getDatesHelper } from '../helpers/getDatesHelper';
 import { filterHelper } from '../helpers/filterHelper';
 import dateResolver from 'date-season';
-
+import InputButton from '../../Reusable/Buttons/InputButton';
+import LocationError from './LocationError';
 
 export default function MapFilter(props) {
   const [selectedValue, setSelectedValue] = useState('');
@@ -74,7 +75,8 @@ export default function MapFilter(props) {
       <div className='row' id='slidecontainer'>
         <div className='justify-content-center align-items-center' id='radiocontainer'>
           <div className='form-check form-check-inline'>
-            <input
+
+            <InputButton
               className='form-check-input sev_check'
               type='radio'
               name='radioGroup'
@@ -83,12 +85,13 @@ export default function MapFilter(props) {
               checked={selectedValue === '1'}
               onChange={handleCheckboxChange}
             />
+
             <label className='form-check-label sev_check' htmlFor='inlineCheckbox1'>
               Week
             </label>
           </div>
           <div className='form-check form-check-inline'>
-            <input
+            <InputButton
               className='form-check-input sev_check'
               type='radio'
               name='radioGroup'
@@ -97,12 +100,14 @@ export default function MapFilter(props) {
               checked={selectedValue === '2'}
               onChange={handleCheckboxChange}
             />
+
             <label className='form-check-label' htmlFor='inlineCheckbox2'>
               Month
             </label>
           </div>
           <div className='form-check form-check-inline'>
-            <input
+
+            <InputButton
               className='form-check-input sev_check'
               type='radio'
               name='radioGroup'
@@ -116,7 +121,8 @@ export default function MapFilter(props) {
             </label>
           </div>
           <div className='form-check form-check-inline'>
-            <input
+
+            <InputButton
               className='form-check-input sev_check'
               type='radio'
               name='radioGroup'
@@ -130,7 +136,8 @@ export default function MapFilter(props) {
             </label>
           </div>
           <div className='form-check form-check-inline'>
-            <input
+
+            <InputButton
               className='form-check-input sev_check'
               type='radio'
               name='radioGroup'
@@ -146,7 +153,9 @@ export default function MapFilter(props) {
         </div>
         <a id='clearFilters' onClick={clearResults}>clear results</a>
         {props.locError && (
-          <LocationError />
+          <LocationError
+            typeMessage='filter sightings'
+          />
         )}
 
       </div>

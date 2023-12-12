@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useLocation } from "react-router-dom";
 import Error from '../../Error/Error'
+import BaseSection from '../../Reusable/Section/BaseSection';
 
 export const ArticleBody = () => {
   const location = useLocation();
@@ -15,15 +16,18 @@ export const ArticleBody = () => {
 
   return (
     <main>
-      <section id="article-header" className="position-relative bg-gradient-light">
+      <BaseSection
+        id="article-header"
+        sectionClassName="position-relative bg-gradient-light"
+      >
         <div className="container pt-14 pb-9 pb-lg-11 position-relative">
           <article className="row pt-lg-7 pb-11">
             <div className="col-lg-10 col-xl-8">
               <div className="position-relative pb-3 pb-lg-0">
                 <div className="d-flex align-items-center w-100">
 
-                    {article.tags.map(tag => (<a href="#!"key={tag} className="badge bg-primary rounded-pill me-3">{tag}</a>))}
-                  
+                  {article.tags.map(tag => (<a href="#!" key={tag} className="badge bg-primary rounded-pill me-3">{tag}</a>))}
+
                   <small className="text-muted">{article.published}</small>
                 </div>
 
@@ -48,9 +52,10 @@ export const ArticleBody = () => {
           <path d="M800 240H0L800 0V240Z" fill="currentColor" />
         </svg>
 
-      </section>
-
-      <section className="position-relative bg-white border-bottom">
+      </BaseSection>
+      <BaseSection
+        sectionClassName="position-relative bg-white border-bottom"
+        >
         <div className="container pb-9 pb-lg-11">
           <img src={`../${article.articleImg}`} alt=""
             className="img-fluid shadow-lg rounded-4 mb-7 mb-lg-9 position-relative mt-n14" />
@@ -65,9 +70,8 @@ export const ArticleBody = () => {
             </div>
           </div>
         </div>
-      </section>
 
-
+      </BaseSection>
 
     </main>
   );
