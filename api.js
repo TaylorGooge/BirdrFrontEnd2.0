@@ -1,11 +1,9 @@
 import axios from "axios";
-// Define your default base URL
 const BASE_URL = import.meta.env.VITE_nodebaseurl;
-// Create an API instance with the default base URL
 const api = axios.create({
   baseURL: BASE_URL,
+
 });
-// Function to make API calls
 const makeApiCall = async (url, method, data) => {
   try {
     const response = await api.request({
